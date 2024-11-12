@@ -1,6 +1,7 @@
 package com.engevias.MapaInterativo.Service;
 
 
+import com.engevias.MapaInterativo.Entities.Malha;
 import com.engevias.MapaInterativo.Entities.MalhaLvc;
 import com.engevias.MapaInterativo.Repository.MalhaLvcRepository;
 import com.engevias.MapaInterativo.Repository.MalhaRepository;
@@ -14,26 +15,23 @@ import java.util.Optional;
 @Service
 public class MalhaLvcService {
     @Autowired
-    private MalhaLvcRepository repository;
+    private MalhaLvcRepository malhaLvcRepository;
 
     public List<MalhaLvc> findAll() {
-        return repository.findAll();
+        return malhaLvcRepository.findAll();
     }
 
-    public Optional<MalhaLvc> findById(Integer id) {
-        return repository.findById(id);
+    public MalhaLvc findById(Integer id) {
+        return malhaLvcRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Malha não encontrada: " + id));
     }
 
-    public MalhaLvc save(MalhaLvc lvc) {
-        return repository.save(lvc);
+    public MalhaLvc save(MalhaLvc malha) {
+        return malhaLvcRepository.save(malha);
     }
 
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
-    }
-
-    public Map<String, Object> getAllAsGeoJson() {
-        return repository.findAllAsGeoJson();
+    public void delete(Integer id) {
+        malhaLvcRepository.deleteById(id);
     }
 }
 

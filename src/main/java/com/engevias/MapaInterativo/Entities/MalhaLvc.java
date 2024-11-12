@@ -10,17 +10,21 @@ import org.locationtech.jts.geom.MultiLineString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "LVC_500_2023")
+@Table(name = "LVC_")
 public class MalhaLvc {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "geometry(MultiLineStringZ, 31984)")
+    @Column(columnDefinition = "geometry(MultiLineStringZ, 4326)")
     private MultiLineString geom;
 
     private String layer;
     private String linetype;
+
+    private String sre;
+    private String resultado;
+    private String resultad_1;
 
 }
